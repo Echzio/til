@@ -1,0 +1,12 @@
+{
+  "name": "nodelearn",
+  "version": "1.0.0",
+  "description": "learn node.js",
+  "main": "index.js",
+  "repository": "https://github.com/Echzio/node-learn.git",
+  "author": "Echzio <aleksassincreed@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+   
+  }
+}

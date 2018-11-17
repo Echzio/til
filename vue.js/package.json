@@ -1,7 +1,7 @@
 {
-  "name": "nodelearn",
+  "name": "vuelearn",
   "version": "1.0.0",
-  "description": "learn node.js",
+  "description": "learn vue.js",
   "main": "index.js",
   "repository": "https://github.com/Echzio/til.git",
   "author": "Echzio <aleksassincreed@yandex.ru>",

@@ -1,13 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <style>
+        .item {
+            width: 45vw;
+            height: 45vh;
+            margin: 25px;
+            background-color: bisque;
+            border: 3px solid;
+            border-color: rgba(255, 255, 255, 0);
+            transition: 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+        }
+        .item.active {
+
+            width: 60vw;
+            height: 65vh;
+            border-color:#000;
+        }
+    </style>
 </head>
+
 <body>
     <h1>My Application</h1>
+
+    <div data="1" class="item"></div>
+    <div data="2" class="item"></div>
     <script src="./js/main.js" defer></script>
 </body>
+
 </html>

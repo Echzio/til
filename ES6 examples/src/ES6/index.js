@@ -1,7 +1,6 @@
 'use strict';
 
-function ready(e) {
-
+let ready = () => {
 
     const test = 50;
     // object
@@ -94,4 +93,4 @@ class ConsoleTimer extends ReverseTimer {
 
 
 
-// document.addEventListener('DOMContentLoaded', ready);
+ document.addEventListener('DOMContentLoaded', ready);

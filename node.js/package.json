@@ -2,7 +2,7 @@
   "name": "nodelearn",
   "version": "1.0.0",
   "description": "learn node.js",
-  "main": "index.js",
+  "main": "server.js",
   "repository": "https://github.com/Echzio/til.git",
   "author": "Echzio <aleksassincreed@yandex.ru>",
   "license": "MIT",

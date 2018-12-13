@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 
 // объявляем сервер
-const server = new http.Server(function (req, res) { // считываем/записываем
+const server = new http.Server((req, res) => { // считываем/записываем
     // смотрим что получаем
     // console.log( req.method, req.url);
 
@@ -10,7 +10,7 @@ const server = new http.Server(function (req, res) { // считываем/за�
     console.log(req.headers);
 
     // детальный просмотр
-    
+
     const urlParsed = url.parse(req.url, true);
     if (urlParsed.pathname == '/awesome' && urlParsed.query.message) {
         res.setHeader('Cache-control', 'no-cache'); // передаем заголовок если хотим
@@ -20,7 +20,7 @@ const server = new http.Server(function (req, res) { // считываем/за�
         res.statusCode = 404; // Not Found
         res.end('Page not found');
     }
-    
+
 });
 
 

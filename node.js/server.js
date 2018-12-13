@@ -2,7 +2,7 @@ const http = require('http');
 const url = require('url');
 
 // объявляем сервер
-const server = new http.Server(function (req, res) {
+const server = new http.Server(function (req, res) { // считываем/записываем
     // смотрим что получаем
     // console.log( req.method, req.url);
 

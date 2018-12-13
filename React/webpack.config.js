@@ -1,6 +1,8 @@
 //для путей
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
 
 module.exports = {
     // вход
@@ -17,24 +19,51 @@ module.exports = {
     devServer: {
         // для показа ошибки вне консоли
         overlay: true,
+        hot: true
     },
     module: {
         rules: [{
-                test: /\.js$/,
+                test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: "babel-loader"
-                }
+                use: ['babel-loader']
             },
             {
                 test: /\.scss$/,
-                use: ['style-loader', MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader']
+                use: [{
+                    loader: 'style-loader'
+                }, {
+                    loader: MiniCssExtractPlugin.loader
+                }, {
+                    loader: 'css-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }, {
+                    loader: 'postcss-loader',
+                    options: {
+                        plugins: [
+                            autoprefixer({
+                                browsers: ['ie >=8', 'last 4 version']
+                            })
+                        ],
+                        sourceMap: true
+                    }
+                }, {
+                    loader: 'sass-loader',
+                    options: {
+                        sourceMap: true
+                    }
+                }]
             }
         ]
+    },
+    resolve: {
+        extensions: ['*', '.js', 'jsx']
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: '../css/style.css',
-        })
+        }),
+        new webpack.HotModuleReplacementPlugin()
     ]
 }

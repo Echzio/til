@@ -18,8 +18,7 @@ module.exports = {
     },
     devServer: {
         // для показа ошибки вне консоли
-        overlay: true,
-        hot: true
+        overlay: true,     
     },
     module: {
         rules: [{
@@ -58,7 +57,7 @@ module.exports = {
         ]
     },
     resolve: {
-        extensions: ['*', '.js', 'jsx']
+        extensions: ['*', '.js', '.jsx']        
     },
     plugins: [
         new MiniCssExtractPlugin({

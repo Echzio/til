@@ -1,9 +1,11 @@
 import './scss/style.scss';
 import React from 'react';
 import { render } from 'react-dom';
+import { hot } from 'react-hot-loader';
 import App from './components/App';
 
 
-render(<App />, document.getElementById('app'));
+const AppWithHot = hot(module)(App);
 
-module.hot.accept();
+
+render(<AppWithHot />, document.getElementById('app'));

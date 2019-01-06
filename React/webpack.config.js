@@ -2,21 +2,24 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const autoprefixer = require('autoprefixer');
 const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
 
 module.exports = {
-    entry: {
-        main: './src/index.js'
-    },
+    entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, './dist/js/'),
         filename: 'awesome.js',
-        publicPath: 'dist/js/',
+        // publicPath: 'dist/js/',
+        publicPath: '',
     },
     devServer: {
-        overlay: true,     
+        overlay: true,
     },
     module: {
-        rules: [{
+        rules: [
+
+            {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
                 use: ['babel-loader']
@@ -48,15 +51,22 @@ module.exports = {
                         sourceMap: true
                     }
                 }]
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader'
             }
         ]
     },
     resolve: {
-        extensions: ['*', '.js', '.jsx']        
+        extensions: ['*', '.js', '.jsx']
     },
     plugins: [
         new MiniCssExtractPlugin({
             filename: '../css/style.css',
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
         }),
         new webpack.HotModuleReplacementPlugin()
     ]

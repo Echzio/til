@@ -6,7 +6,5 @@
   "repository": "https://github.com/Echzio/til.git",
   "author": "Echzio <aleksassincreed@yandex.ru>",
   "license": "MIT",
-  "scripts": {
-   
-  }
+  "scripts": {}
 }

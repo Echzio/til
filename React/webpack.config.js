@@ -15,6 +15,7 @@ module.exports = {
     },
     devServer: {
         overlay: true,
+        hot: true
     },
     module: {
         rules: [
@@ -63,7 +64,7 @@ module.exports = {
     },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '../css/style.css',
+            filename: './css/style.css',
         }),
         new HtmlWebpackPlugin({
             template: './src/index.html'

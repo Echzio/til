@@ -1,5 +1,5 @@
 const path = require('path');
-
+const webpack = require('webpack');
 module.exports = {
 
     //entry point
@@ -14,6 +14,11 @@ module.exports = {
     },
     // sarvar
     devServer: {
-        overlay: true
-    }
+        overlay: true,
+        port: 9000,
+        hot: true
+    },
+    plugins: [
+      new webpack.HotModuleReplacementPlugin()
+    ]
 }

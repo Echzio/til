@@ -15,7 +15,8 @@ module.exports = {
     },
     devServer: {
         overlay: true,
-        hot: true
+        hot: true,
+        port: 9000
     },
     module: {
         rules: [

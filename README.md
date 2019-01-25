@@ -1,13 +1,13 @@
 # To I Learn
 ```sh
-1) node.js
+1) Node.js
 ```
 ```sh
-2) vue.js
+2) React
 ```
 ```sh
-3) java core
+3) Java core
 ```
 ```sh
-4) ES6
+4) ES 6~∞
 ```

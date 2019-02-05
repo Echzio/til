@@ -10,7 +10,7 @@
     "build": "webpack --mode development",
     "watch": "webpack --watch --mode development",
     "dev": "webpack-dev-server --open --mode development",
-    "pretty": "prettier --write src/**/*.*",
+    "pretty": "prettier --write src/**/*.{js,jsx,scss}",
     "prod": "webpack --mode production"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const autoprefixer = require('autoprefixer');
+const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
@@ -39,8 +39,10 @@ module.exports = {
                     loader: 'postcss-loader',
                     options: {
                         plugins: [
-                            autoprefixer({
-                                browsers: ['ie >=8', 'last 4 version']
+                            postcssPresetEnv({
+                                state : 0,
+                                browsers: ['>1%'],
+                                autoprefixer: { grid: true }
                             })
                         ],
                         sourceMap: true

@@ -3,6 +3,7 @@ const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = {
     entry: ['@babel/polyfill', './src/index.js'],
@@ -63,6 +64,9 @@ module.exports = {
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
+    optimization: {
+        minimizer: [new TerserPlugin()],
+      },
     plugins: [
         new MiniCssExtractPlugin({
             filename: './css/style.css',

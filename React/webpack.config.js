@@ -42,7 +42,7 @@ module.exports = {
                         plugins: [
                             postcssPresetEnv({
                                 state : 0,
-                                browsers: ['>1%'],
+                                browsers: ['last 4 version'],
                                 autoprefixer: { grid: true }
                             })
                         ],
@@ -58,18 +58,26 @@ module.exports = {
             {
                 test: /\.(png|jpg)$/,
                 loader: 'url-loader'
-            }
+            },
+            {
+        test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
+        use: ['file-loader?name=fonts/[name].[ext]']
+      }, 
         ]
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
     optimization: {
-        minimizer: [new TerserPlugin()],
+        minimizer: [new TerserPlugin({
+        cache: true,
+        parallel: true,
+        }
+    )],
       },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: './css/style.css',
+            filename: '[name].[ext]',
         }),
         new HtmlWebpackPlugin({
             template: './src/index.html'

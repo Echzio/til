@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+}
+
+p {
+    font-size: 60px;
+    transition: 4s ease-in-out;
+}
+
+body.yellow #rotate p {
+    color: #f39c12;
+}
+
+body.green #rotate p {
+    color: #2ecc71;
+}
+
+body.blue #rotate p {
+    color: #2980b9;
+}
+
+body.purple #rotate p {
+    color: #8e44ad;
+}
+
+body.red #rotate p {
+    color: #f66;
+}

@@ -9,7 +9,7 @@ module.exports = {
     entry: ['@babel/polyfill', './src/index.js'],
     output: {
         path: path.resolve(__dirname, 'dist'),
-        filename: 'awesome.js',
+        filename: '[name].js',
         publicPath: '',
     },
     devServer: {
@@ -56,7 +56,7 @@ module.exports = {
                 }]
             },
             {
-                test: /\.(png|jpg)$/,
+                test: /\.(png|jpg|gif)$/,
                 loader: 'url-loader'
             },
             {
@@ -69,18 +69,31 @@ module.exports = {
         extensions: ['*', '.js', '.jsx']
     },
     optimization: {
-        minimizer: [new TerserPlugin({
-        cache: true,
-        parallel: true,
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+        }),
+      ],
+      splitChunks: {      
+        chunks: 'all',     
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all'
+          }
         }
-    )],
+      }
+    },
       },
     plugins: [
         new MiniCssExtractPlugin({
-            filename: '[name].[ext]',
+            filename: '[name].css',
         }),
         new HtmlWebpackPlugin({
-            template: './src/index.html'
+            template: './src/index.html',
+            title: 'React Boilerplate',
         }),
         new webpack.HotModuleReplacementPlugin()
     ]

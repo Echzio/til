@@ -1,29 +1,23 @@
 (() => {
-  const ReadyWindow = () => {
-    const Colors = ['yellow', 'green', 'blue', 'purple', 'red'];
-    const Body = document.body;
-    let state = 0;
-    const ChangeColors = () => {
-      setTimeout(() => {
-        Body.classList.remove(Colors[state - 1]);
-        SetColors();
-        ChangeColors();
-      }, 5000);
+  class ColorRotate {
+    constructor(colors) {
+      this.colors = colors
     }
-    const SetColors = () => {
-      if (state < 5) {
-        Body.classList.add(Colors[state]);
+    setColors = (state = 0) => {
+      if (state < this.colors.length) {
+        document.body.className = this.colors[state]
         state++;
       } else {
         state = 0;
-        Body.classList.add(Colors[state]);
+        document.body.className = this.colors[state]
         state++;
       }
+      setTimeout(() => {
+        this.setColors(state);
+      }, 5000);
     }
-
-    SetColors();
-    ChangeColors();
   }
-
-  window.addEventListener('load', ReadyWindow);
+  const Colors = ['yellow', '#000', 'green', 'blue', 'purple', 'red', 'pink']
+  const Color = new ColorRotate(Colors)
+  Color.setColors()
 })()

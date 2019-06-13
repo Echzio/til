@@ -44,7 +44,6 @@ module.exports = {
               plugins: [
                 postcssPresetEnv({
                   state: 0,
-                  browsers: ['last 4 version'],
                   autoprefixer: {
                     grid: true,
                   },

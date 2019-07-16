@@ -44,7 +44,8 @@
   "dependencies": {
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-hot-loader": "^4.11.0"
+    "react-hot-loader": "^4.11.0",
+    "@hot-loader/react-dom": "^16.8.6"
   },
   "husky": {
     "hooks": {

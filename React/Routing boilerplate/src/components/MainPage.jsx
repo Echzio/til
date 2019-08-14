@@ -1,8 +1,15 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const StyledMainPage = styled.div`
+  font-size: 20px;
+`
 
 const MainPage = () => {
   return (
-    <h1 className="main-page">Main Page</h1>
+    <StyledMainPage>
+      <span>Main Page</span>
+    </StyledMainPage>
   )
 }
 

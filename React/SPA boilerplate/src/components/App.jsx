@@ -1,6 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { hot } from 'react-hot-loader';
+import styled from 'styled-components';
 
+const H1 = styled.h1`
+    font-size: 2rem;
+`;
 
 const App = () => {
     const [title, setTitle] = useState('');
@@ -9,7 +13,11 @@ const App = () => {
         setTitle('Hello, world');
     })   
 
-    return <h1>{title}</h1>
+    return (
+        <H1>
+            {title}
+        </H1>
+    )
 }
 
 

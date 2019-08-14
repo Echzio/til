@@ -1,9 +1,14 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
 import { render } from 'react-dom';
-
-
-import App from './components/App';
+const App = lazy(() => import('./components/App'))
 import './scss/style.scss';
 
+const Root = () => {
+  return (
+    <Suspense fallback="loading">
+      <App />
+    </Suspense>
+  )
+}
 
-render(<App />, document.getElementById('app'));
+render(<Root />, document.getElementById('app'));

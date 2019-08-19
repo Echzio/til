@@ -11,7 +11,8 @@
     "watch": "webpack --watch --mode development",
     "dev": "webpack-dev-server --open --mode development",
     "pretty": "prettier --write src/**/*.{js,jsx,scss}",
-    "prod": "webpack --mode production"
+    "prod": "webpack --mode production",
+    "now-build": "webpack --mode production"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -21,6 +22,7 @@
     "@babel/preset-react": "^7.0.0",
     "@babel/register": "^7.5.5",    
     "babel-loader": "^8.0.6",
+    "babel-plugin-emotion": "^10.0.16",
     "css-loader": "^3.2.0",
     "file-loader": "^4.2.0",
     "html-webpack-plugin": "^3.2.0",
@@ -44,11 +46,12 @@
     "webpack-dev-server": "^3.8.0"
   },
   "dependencies": {
+    "@emotion/core": "^10.0.16",
+    "@emotion/styled": "^10.0.15",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-hot-loader": "^4.12.11",
-    "@hot-loader/react-dom": "16.9.0-4.12.11",
-    "styled-components": "^4.3.2"
+    "@hot-loader/react-dom": "16.9.0-4.12.11"
   },
   "husky": {
     "hooks": {

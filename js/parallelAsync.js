@@ -10,9 +10,7 @@ const Two = async () => {
   return console.log(result)
 }
 
-(async () => {
-  await Promise.all([
-    One(),
-    Two()
-  ])
-})();
+Promise.all([
+  One(),
+  Two()
+])

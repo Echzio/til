@@ -11,8 +11,7 @@
     "watch": "webpack --watch --mode development",
     "dev": "webpack-dev-server --open --mode development",
     "pretty": "prettier --write src/**/*.{js,jsx,scss}",
-    "prod": "webpack --mode production",
-    "now-build": "webpack --mode production"
+    "prod": "webpack --mode production"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",

@@ -3,7 +3,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 
 import App from './components/app/app'
 import Main from './pages/main/main'
-import Test from './pages/test/test';
+import Test from './pages/test/test'
+import Tabs from './pages/tabs/tabs'
 
 const Router = () => {
   return (
@@ -12,6 +13,7 @@ const Router = () => {
         <Switch>
           <Route exact path="/" component={Main} />
           <Route path="/test" component={Test} />
+          <Route path="/tabs" component={Tabs} />
         </Switch>
       </App>
     </BrowserRouter>

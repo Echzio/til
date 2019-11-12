@@ -65816,12 +65816,12 @@ const cities = [
   }
 ]
 
-document.getElementById('he').oninput = throttle((e) => searchAlgoritm(e, cities), 1000)
+document.getElementById('he').oninput = throttle(searchAlgoritm, 1000)
 
 
-function searchAlgoritm(e, array) {
+function searchAlgoritm(e) {
   document.getElementById('out').innerHTML = '';
-  array.filter(item => {
+  cities.filter(item => {
     return item.name.toLowerCase().includes(e.target.value.toLowerCase())
   }).forEach(item => {
     const p = document.createElement('p');
@@ -65836,14 +65836,13 @@ function throttle(f, t) {
   let savedArgs;
   let savedThis;
 
-  function wrapper() {
-    console.log('wrapper ok')
+  function wrapper() {    
     if (isThrottled) {
       savedArgs = arguments
       savedThis = this
       return
     }
-
+    console.log('wrapper ok')
     f.apply(this, arguments)
     isThrottled = true
 

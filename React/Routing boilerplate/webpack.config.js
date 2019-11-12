@@ -4,6 +4,9 @@ const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const dotenv = require('dotenv').config({
+  path: __dirname + '/.env'
+});
 
 module.exports = {
   entry: ['@babel/polyfill', './src/index.js'],
@@ -26,18 +29,10 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: [{
-            loader: 'style-loader',
-          },
-          {
-            loader: MiniCssExtractPlugin.loader,
-          },
-          {
-            loader: 'css-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
           {
             loader: 'postcss-loader',
             options: {
@@ -52,12 +47,7 @@ module.exports = {
               sourceMap: true,
             },
           },
-          {
-            loader: 'sass-loader',
-            options: {
-              sourceMap: true,
-            },
-          },
+          'sass-loader',
         ],
       },
       {
@@ -74,7 +64,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
-      }
+    }
   },
   optimization: {
     minimizer: [
@@ -100,8 +90,13 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
-      title: 'React Boilerplate',
     }),
     new webpack.HotModuleReplacementPlugin(),
+    new webpackBar({
+      color: 'blue',
+    }),
+    new webpack.DefinePlugin({
+      'process.env': JSON.stringify(dotenv.parsed),
+    }),
   ],
 };

@@ -4,6 +4,7 @@ const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
+const webpackBar = require('webpackbar');
 const dotenv = require('dotenv').config({
   path: __dirname + '/.env'
 });

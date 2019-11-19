@@ -4,6 +4,7 @@ const postcssNested = require('postcss-nested');
 const postcssNormalize = require('postcss-normalize');
 const postcssPresetEnv = require('postcss-preset-env');
 const webpack = require('webpack');
+const webpackBar = require('webpackbar');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 
@@ -89,6 +90,9 @@ module.exports = {
     }),
     new HtmlWebpackPlugin({
       template: './src/index.html',
+    }),
+    new webpackBar({
+      color: 'red',
     }),
     new webpack.HotModuleReplacementPlugin(),
   ],

@@ -1,9 +1,25 @@
 import React from 'react';
+import { connect } from 'react-redux'
+import { bindActionCreators } from 'redux'
+import * as actions from '../../core/actions/index'
 
-const Main = () => {
+const Main = ({ title, setTitle }) => {
+  console.log(actions)
   return (
-    <span>Main Page</span>
+    <>
+      <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+      <p>{title}</p>
+      <span>Main Page</span>
+    </>
   );
 };
 
-export default Main;
+const mapStateToProps = ({ window1: { title } }) => ({ title });
+const mapDispatchToProps = dispatch => {
+  const { setTitle } = bindActionCreators(actions, dispatch);
+  return {
+    setTitle: value => setTitle(value)
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

@@ -1,2 +1,2 @@
 # vue
-vue template for commerce
+vue todo

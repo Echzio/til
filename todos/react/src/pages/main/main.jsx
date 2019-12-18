@@ -2,9 +2,11 @@ import React, { useState, useRef } from 'react'
 import { hot } from 'react-hot-loader'
 import { todos } from './static/todos'
 import { Todo } from '../../components/todo/todo'
+import {Modal} from '../../components/modal/modal'
 
 const Main = hot(module)(() => {
   const [todoList, setTodoList] = useState(todos)
+  const [toggleModal, setToggleModal] = useState(false)
   const nameInput = useRef(null);
   const descInput = useRef(null);
 
@@ -62,6 +64,8 @@ const Main = hot(module)(() => {
         <br />
         <button onClick={addTodo}>Добавить!</button>
       </div>
+      <button onClick={() => setToggleModal(prevState => !prevState)}>показать/скрыть модалку</button>
+      <Modal show={toggleModal} changeShow={setToggleModal} />
     </div>
   )
 })

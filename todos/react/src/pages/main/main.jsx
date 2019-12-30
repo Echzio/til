@@ -2,7 +2,7 @@ import React, { useState, useRef } from 'react'
 import { hot } from 'react-hot-loader'
 import { todos } from './static/todos'
 import { Todo } from '../../components/todo/todo'
-import {Modal} from '../../components/modal/modal'
+import { Modal } from '../../components/modal/modal'
 
 const Main = hot(module)(() => {
   const [todoList, setTodoList] = useState(todos)

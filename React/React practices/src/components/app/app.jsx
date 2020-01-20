@@ -1,17 +1,19 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
+import { renderRoutes } from 'react-router-config';
+
 import Header from '../header/header';
-import {css} from 'astroturf';
+import { css } from 'astroturf';
 
 css`
   @import-normalize;
 `;
 
-const App = ({ children }) => {
+const App = ({ route }) => {
   return (
     <>
       <Header />
-      {children}
+      {renderRoutes(route.routes)}
     </>
   );
 };

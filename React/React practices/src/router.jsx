@@ -1,23 +1,35 @@
-import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-
 import App from './components/app/app'
-import Main from './pages/main/main'
+import { Main } from './pages/main/main'
 import Test from './pages/test/test'
 import Tabs from './pages/tabs/tabs'
+import { Pagination } from '@/pages/pagination/pagination'
 
-const Router = () => {
-  return (
-    <BrowserRouter>
-      <App>
-        <Switch>
-          <Route exact path="/" component={Main} />
-          <Route path="/test" component={Test} />
-          <Route path="/tabs" component={Tabs} />
-        </Switch>
-      </App>
-    </BrowserRouter>
-  )
-}
-
-export default Router
+export const routes = [
+  {
+    path: '/',
+    component: App,
+    routes: [
+      {
+        path: '/',
+        exact: true,
+        component: Main
+      },
+      {
+        path: '/test',
+        component: Test
+      },
+      {
+        path: '/tabs',
+        component: Tabs
+      },
+      {
+        path: '/pagination/:page',
+        component: Pagination,
+      },
+      {
+        path: '/pagination',
+        component: Pagination,
+      },
+    ]
+  },
+]

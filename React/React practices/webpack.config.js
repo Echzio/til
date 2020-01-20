@@ -13,7 +13,7 @@ module.exports = {
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].js',
-    publicPath: '',
+    publicPath: '/',
   },
   devServer: {
     overlay: true,
@@ -21,6 +21,7 @@ module.exports = {
     port: 9000,
     historyApiFallback: true,
   },
+  devtool: 'source-map',
   module: {
     rules: [
       {
@@ -64,6 +65,7 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   optimization: {

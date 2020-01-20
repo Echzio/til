@@ -1,25 +1,21 @@
-import React from 'react';
-import { connect } from 'react-redux'
-import { bindActionCreators } from 'redux'
+import React, { useCallback } from 'react';
+import { useSelector, useDispatch, shallowEqual } from 'react-redux'
 import * as actions from '../../core/actions/index'
 
-const Main = ({ title, setTitle }) => {
-  console.log(actions)
+export const Main = () => {
+  const { title } = useSelector(({ window1: { title } }) => ({ title }), shallowEqual);
+  const dispatch = useDispatch();
+  const changeTitle = useCallback(e => {
+    dispatch(actions.setTitle(e.target.value))
+  }, [dispatch])
+
   return (
     <>
-      <input type="text" value={title} onChange={e => setTitle(e.target.value)} />
+      {console.log(`rerender main`)}
+      <input type="text" value={title} onChange={changeTitle} />
       <p>{title}</p>
       <span>Main Page</span>
     </>
   );
 };
 
-const mapStateToProps = ({ window1: { title } }) => ({ title });
-const mapDispatchToProps = dispatch => {
-  const { setTitle } = bindActionCreators(actions, dispatch);
-  return {
-    setTitle: value => setTitle(value)
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Main);

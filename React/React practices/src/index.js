@@ -1,11 +1,14 @@
-import React, { lazy, Suspense } from 'react';
+import React from 'react';
 import { render } from 'react-dom';
+
+import { BrowserRouter } from 'react-router-dom';
+import { renderRoutes } from 'react-router-config';
+import { routes } from './router';
 
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import { rootReducer } from './core/reducers/index';
 
-const Router = lazy(() => import('./router'));
 const store = createStore(
   rootReducer,
   window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
@@ -14,9 +17,7 @@ const store = createStore(
 const Root = () => {
   return (
     <Provider store={store}>
-      <Suspense fallback="loading...">
-        <Router />
-      </Suspense>
+      <BrowserRouter>{renderRoutes(routes)}</BrowserRouter>
     </Provider>
   );
 };

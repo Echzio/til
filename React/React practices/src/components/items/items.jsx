@@ -3,20 +3,22 @@ import { useSelector, shallowEqual } from 'react-redux'
 import { hot } from 'react-hot-loader'
 import { items } from './static/index'
 
+const mappedItems = items.map(({ _, name }, index) => ({
+  id: index,
+  name
+}));
+
 export const Items = hot(module)(() => {
-  const mappedItems = items.map(({ _, name }, index) => ({
-    id: index,
-    name
-  }));
-  const { slicedItems } = useSelector(({ pagination: { currentPage, countOnPage } }) => {
-    return useMemo(() => ({
-      slicedItems: mappedItems.slice((currentPage - 1) * countOnPage, currentPage * countOnPage)
-    }), [currentPage])
-  }, shallowEqual)
+  const { currentPage, countOnPage } = useSelector(({ pagination: { currentPage, countOnPage } }) => ({ currentPage, countOnPage }), shallowEqual);
+
+  const memoSlicedItems = useMemo(() => {
+    return mappedItems.slice((currentPage - 1) * countOnPage, currentPage * countOnPage)
+  }, [currentPage])
 
   return (
     <>
-      {slicedItems.map(item => {
+      {console.log('rerender items')}
+      {memoSlicedItems.map(item => {
         return <p key={item.id}>{`${item.name} ${item.id}`}</p>
       })}
     </>

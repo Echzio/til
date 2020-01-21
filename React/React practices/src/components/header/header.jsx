@@ -25,10 +25,10 @@ const Header = () => {
         onClick={e => memoLinks({ e, path: '/tabs' })}
       >tabs</NavLink>
       <NavLink
-        to="/pagination"
-        onClick={e => memoLinks({ e, path: '/pagination' })}
+        to="/concat"
+        onClick={e => memoLinks({ e, path: '/concat' })}
       >
-        pagination
+        concat pages
         </NavLink>
     </LinkWrapper>
   );

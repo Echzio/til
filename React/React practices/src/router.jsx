@@ -1,8 +1,8 @@
 import App from './components/app/app'
 import { Main } from './pages/main/main'
+import { ConcatPages } from './pages/concatPages/concatPages'
 import Test from './pages/test/test'
 import Tabs from './pages/tabs/tabs'
-import { Pagination } from '@/pages/pagination/pagination'
 
 export const routes = [
   {
@@ -23,13 +23,13 @@ export const routes = [
         component: Tabs
       },
       {
-        path: '/pagination/:page',
-        component: Pagination,
+        path: '/concat/:page',
+        component: ConcatPages,
       },
       {
-        path: '/pagination',
-        component: Pagination,
-      },
+        path: '/concat',
+        component: ConcatPages,
+      },      
     ]
   },
 ]

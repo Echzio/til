@@ -1,4 +1,4 @@
-import React, { useReducer, useEffect } from 'react';
+import React, { useReducer } from 'react';
 import { hot } from 'react-hot-loader';
 
 const Page2 = () => {

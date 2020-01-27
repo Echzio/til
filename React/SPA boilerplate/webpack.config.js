@@ -22,7 +22,8 @@ module.exports = {
   },
   devtool: 'source-map',
   module: {
-    rules: [{
+    rules: [
+      {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
@@ -64,7 +65,8 @@ module.exports = {
     extensions: ['*', '.js', '.jsx'],
     alias: {
       'react-dom': '@hot-loader/react-dom',
-    }
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   optimization: {
     minimizer: [

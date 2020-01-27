@@ -10,6 +10,7 @@ export const Pagination = hot(module)(() => {
   const { countOnPage, currentPage } = useSelector(({ pagination: { countOnPage, currentPage } }) => ({ countOnPage, currentPage }), shallowEqual)
 
   const dispatch = useDispatch();
+  
   const setCurrentPage = useCallback(page => {
     dispatch(actions.setCurrentPage(page))
   }, [dispatch])

@@ -3,6 +3,7 @@ import { Main } from './pages/main/main'
 import { ConcatPages } from './pages/concatPages/concatPages'
 import Test from './pages/test/test'
 import Tabs from './pages/tabs/tabs'
+import { ModalPage } from '@/pages/modalPage/modalPage';
 
 export const routes = [
   {
@@ -29,7 +30,11 @@ export const routes = [
       {
         path: '/concat',
         component: ConcatPages,
-      },      
+      },
+      {
+        path: '/modal',
+        component: ModalPage
+      }
     ]
   },
 ]

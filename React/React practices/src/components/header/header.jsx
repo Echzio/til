@@ -30,6 +30,10 @@ const Header = () => {
       >
         concat pages
         </NavLink>
+      <NavLink
+        to="/modal"
+        onClick={e => memoLinks({ e, path: '/modal' })}
+      >modal</NavLink>
     </LinkWrapper>
   );
 };

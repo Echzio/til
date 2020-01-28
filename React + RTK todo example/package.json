@@ -1,0 +1,50 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React learn",
+  "main": "./src/index.js",
+  "repository": "https://github.com/Echzio/til.git",
+  "author": "Echzio <aleksassincreed@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode development",
+    "watch": "webpack --watch --mode development",
+    "dev": "webpack-dev-server --open --mode development",
+    "pretty": "prettier --write src/**/*.{js,jsx,scss}",
+    "prod": "webpack --mode production"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "path": "^0.12.7",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0",
+    "webpackbar": "^4.0.0"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "16.11.0",
+    "@reduxjs/toolkit": "^1.2.3",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.18",
+    "react-redux": "^7.1.3"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js, jsx, scss}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
+}

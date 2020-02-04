@@ -24,11 +24,8 @@ export const routes = [
         component: Tabs
       },
       {
-        path: '/concat/:page',
-        component: ConcatPages,
-      },
-      {
         path: '/concat',
+        strict: false,
         component: ConcatPages,
       },
       {

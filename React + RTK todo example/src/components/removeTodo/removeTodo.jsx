@@ -1,18 +1,14 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { removeTodo } from '@/store/reducers/todo';
+import { useActions } from '@/hooks/index';
 
-import { useDispatch } from 'react-redux'
 import { hot } from 'react-hot-loader';
 
 
-
 export const RemoveTodo = hot(module)(({ id }) => {
-  const dispatch = useDispatch();
-  const setRemoveTodo = useCallback(() => {
-    dispatch(removeTodo(id))
-  }, [dispatch, id])
+  const { actionCreator: removeTodoBinded } = useActions([removeTodo]);
 
   return (
-    <button onClick={setRemoveTodo}>удалить todo</button>
+    <button onClick={() => removeTodoBinded(id)}>удалить todo</button>
   )
 })

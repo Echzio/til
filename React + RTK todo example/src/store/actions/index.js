@@ -1,2 +1,4 @@
 import { delaySetTodo } from './delaySetTodo'
-export { delaySetTodo }
+import { validateAuth } from './validateAuth'
+
+export { delaySetTodo, validateAuth }

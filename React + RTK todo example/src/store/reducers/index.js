@@ -1,10 +1,10 @@
 import { combineReducers } from 'redux'
 import todo from './todo';
-import theme from './theme';
+import auth from './auth';
 
 const rootReducer = combineReducers({
   todo,
-  theme,
+  auth,
 })
 
 export { rootReducer }

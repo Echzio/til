@@ -1,25 +1,17 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef } from 'react'
 import { hot } from 'react-hot-loader';
-import { useSelector, useDispatch } from 'react-redux'
+import { useSelector } from 'react-redux'
+import { useActions } from '@/hooks/index';
 
 import { currentTodoId } from '@/store/selectors/index'
 import { delaySetTodo } from '@/store/actions/index';
 
 export const AddTodo = hot(module)(() => {
   const text = useRef(null);
-  const dispatch = useDispatch();
-
+  const { delaySetTodo: delaySetTodoBinded } = useActions([delaySetTodo]);
   const { currentId } = useSelector(({ todo: { todos } }) => ({
     currentId: currentTodoId(todos)
   }))
-
-  const setAddTodo = useCallback(() => {
-    dispatch(delaySetTodo({
-      id: currentId,
-      text: text.current.value,
-    }))
-  }, [dispatch, currentId])
-
 
   return (
     <div>
@@ -27,7 +19,10 @@ export const AddTodo = hot(module)(() => {
         <label htmlFor="text">text:</label>
         <input id="text" ref={text} type="text" />
       </div>
-      <button onClick={setAddTodo}>добавить todo</button>
+      <button onClick={() => delaySetTodoBinded({
+        id: currentId,
+        text: text.current.value,
+      })}>добавить todo</button>
     </div >
   )
 })

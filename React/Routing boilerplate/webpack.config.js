@@ -9,96 +9,101 @@ const dotenv = require('dotenv').config({
   path: __dirname + '/.env'
 });
 
-module.exports = {
-  entry: ['@babel/polyfill', './src/index.js'],
-  output: {
-    path: path.resolve(__dirname, 'dist'),
-    filename: '[name].js',
-    publicPath: '/',
-  },
-  devServer: {
-    overlay: true,
-    hot: true,
-    port: 9000,
-    historyApiFallback: true,
-  },
-  module: {
-    rules: [{
-      test: /\.(js|jsx)$/,
-      exclude: /node_modules/,
-      use: ['babel-loader'],
+module.exports = (env, argv) => {
+  return {
+    entry: ['@babel/polyfill', './src/index.js'],
+    output: {
+      path: path.resolve(__dirname, 'dist'),
+      filename: '[name].js',
+      publicPath: '/',
     },
-    {
-      test: /\.(sa|sc|c)ss$/,
-      use: [
-        'style-loader',
-        MiniCssExtractPlugin.loader,
-        'css-loader',
-        {
-          loader: 'postcss-loader',
-          options: {
-            plugins: [
-              postcssPresetEnv({
-                stage: 0,
-                autoprefixer: {
-                  grid: true,
-                },
-              }),
-            ],
-            sourceMap: true,
+    devtool: argv.mode === 'development' ? 'source-map' : false,
+    devServer: {
+      overlay: true,
+      hot: true,
+      port: 9000,
+      historyApiFallback: true,
+    },
+    module: {
+      rules: [{
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: [
+          'style-loader',
+          MiniCssExtractPlugin.loader,
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: [
+                postcssPresetEnv({
+                  stage: 0,
+                  autoprefixer: {
+                    grid: true,
+                  },
+                }),
+              ],
+              sourceMap: true,
+            },
           },
-        },
-        'sass-loader',
+          'sass-loader',
+        ],
+      },
+      {
+        test: /\.(png|jpg|gif)$/,
+        loader: 'url-loader',
+      },
+      {
+        test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
+        use: ['file-loader?name=fonts/[name].[ext]'],
+      },
       ],
     },
-    {
-      test: /\.(png|jpg|gif)$/,
-      loader: 'url-loader',
+    resolve: {
+      extensions: ['*', '.js', '.jsx'],
+      alias: {
+        'react-dom': '@hot-loader/react-dom',
+        '@': path.resolve(__dirname, 'src'),
+      }
     },
-    {
-      test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
-      use: ['file-loader?name=fonts/[name].[ext]'],
-    },
-    ],
-  },
-  resolve: {
-    extensions: ['*', '.js', '.jsx'],
-    alias: {
-      'react-dom': '@hot-loader/react-dom',
-      '@': path.resolve(__dirname, 'src'),
-    }
-  },
-  optimization: {
-    minimizer: [
-      new TerserPlugin({
-        cache: true,
-        parallel: true,
-      }),
-    ],
-    splitChunks: {
-      chunks: 'all',
-      cacheGroups: {
-        vendor: {
-          test: /[\\/]node_modules[\\/]/,
-          name: 'vendors',
-          chunks: 'all',
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          cache: true,
+          parallel: true,
+        }),
+      ],
+      splitChunks: {
+        chunks: 'all',
+        minSize: 10000,
+        maxSize: 250000,
+        cacheGroups: {
+          vendor: {
+            test: /[\\/]node_modules[\\/]/,
+            name: 'vendors',
+            chunks: 'all',
+          },
         },
       },
     },
-  },
-  plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css',
-    }),
-    new HtmlWebpackPlugin({
-      template: './src/index.html',
-    }),
-    new webpack.HotModuleReplacementPlugin(),
-    new webpackBar({
-      color: 'blue',
-    }),
-    new webpack.DefinePlugin({
-      'process.env': JSON.stringify(dotenv.parsed),
-    }),
-  ],
-};
+    plugins: [
+      new MiniCssExtractPlugin({
+        filename: '[name].css',
+      }),
+      new HtmlWebpackPlugin({
+        template: './src/index.html',
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpackBar({
+        color: 'blue',
+      }),
+      new webpack.DefinePlugin({
+        'process.env': JSON.stringify(dotenv.parsed),
+      }),
+    ],
+  };
+} 

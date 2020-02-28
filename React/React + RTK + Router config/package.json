@@ -9,8 +9,7 @@
   "scripts": {
     "build": "webpack --mode development",
     "watch": "webpack --watch --mode development",
-    "dev": "webpack-dev-server --open --mode development",
-    "pretty": "prettier --write src/**/*.{js,jsx,scss}",
+    "dev": "webpack-dev-server --open --mode development",    
     "prod": "webpack --mode production"
   },
   "devDependencies": {
@@ -40,15 +39,4 @@
     "react-router-config": "^5.1.1",
     "react-router-dom": "^5.1.2"
   },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
-  },
-  "lint-staged": {
-    "*.{js, jsx, scss}": [
-      "prettier --write",
-      "git add"
-    ]
-  }
 }

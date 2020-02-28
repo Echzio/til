@@ -19,6 +19,7 @@ module.exports = (env, argv) => {
       overlay: true,
       hot: true,
       port: 9000,
+      contentBase: [__dirname + '/public'],
       historyApiFallback: true,
     },
     devtool: argv.mode === 'development' ? 'source-map' : false,
@@ -53,12 +54,12 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(png|jpg|gif)$/,
-          loader: 'url-loader',
+          test: /\.(png|jpg|gif|webp)$/,
+          loader: ['file-loader?name=./assets/img/[name]/[ext]'],
         },
         {
           test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
-          use: ['file-loader?name=fonts/[name].[ext]'],
+          use: ['file-loader?name=./assets/fonts/[name].[ext]'],
         },
       ],
     },
@@ -91,10 +92,11 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new MiniCssExtractPlugin({
-        filename: '[name].css',
+        filename: './assets/styles/[name].css',
       }),
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './public/index.html',
+        favicon: './public/favicon.ico',
       }),
       new webpack.HotModuleReplacementPlugin(),
       new webpackBar({
@@ -105,5 +107,4 @@ module.exports = (env, argv) => {
       }),
     ],
   };
-
-}
+};

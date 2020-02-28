@@ -6,6 +6,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpackBar = require('webpackbar');
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => {
   return {
@@ -105,6 +106,7 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(dotenv.parsed),
       }),
+      // new BundleAnalyzerPlugin()
     ],
   };
 };

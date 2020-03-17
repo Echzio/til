@@ -3,11 +3,12 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpackBar = require('webpackbar');
+const CopyPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 
 module.exports = (env, argv) => {
   return {
-    entry: ['@babel/polyfill', './src/index.js'],
+    entry: ['@babel/polyfill', 'react-hot-loader/patch', './src/index.js'],
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
@@ -18,21 +19,24 @@ module.exports = (env, argv) => {
       overlay: true,
       hot: true,
       port: 9000,
+      contentBase: [__dirname + '/public'],
       historyApiFallback: true,
     },
     module: {
-      rules: [{
-        test: /\.(js|jsx)$/,
-        exclude: /node_modules/,
-        use: ['babel-loader'],
-      },],
+      rules: [
+        {
+          test: /\.(js|jsx)$/,
+          exclude: /node_modules/,
+          use: ['babel-loader'],
+        },
+      ],
     },
     resolve: {
       extensions: ['*', '.js', '.jsx'],
       alias: {
         'react-dom': '@hot-loader/react-dom',
         '@': path.resolve(__dirname, 'src'),
-      }
+      },
     },
     optimization: {
       minimizer: [
@@ -52,11 +56,11 @@ module.exports = (env, argv) => {
             chunks: 'all',
           },
         },
-      }
+      },
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './public/index.html',
       }),
       new webpack.HotModuleReplacementPlugin(),
       new webpackBar({
@@ -65,6 +69,7 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(dotenv.parsed),
       }),
+      new CopyPlugin([{ from: 'public/assets', to: 'assets' }]),
     ],
   };
-}
+};

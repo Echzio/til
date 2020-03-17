@@ -5,7 +5,7 @@ const webpackBar = require('webpackbar');
 
 module.exports = (env, argv) => {
   return {
-    entry: ['@babel/polyfill', './src/index.js'],
+    entry: ['@babel/polyfill', 'react-hot-loader/patch', './src/index.js'],
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
@@ -15,6 +15,7 @@ module.exports = (env, argv) => {
       overlay: true,
       hot: true,
       port: 9000,
+      contentBase: [__dirname + '/public'],
       historyApiFallback: true,
     },
     devtool: argv.mode === 'development' ? 'source-map' : false,
@@ -34,7 +35,7 @@ module.exports = (env, argv) => {
     },
     plugins: [
       new HtmlWebpackPlugin({
-        template: './src/index.html',
+        template: './public/index.html',
       }),
       new webpack.HotModuleReplacementPlugin(),
       new webpackBar({

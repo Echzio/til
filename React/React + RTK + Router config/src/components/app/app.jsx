@@ -1,9 +1,10 @@
 import React from 'react'
-import { hot } from 'react-hot-loader'
+import { hot } from 'react-hot-loader/root';
 
 import { renderRoutes } from 'react-router-config'
+import { routes } from '@/router/'
 
-export const App = hot(module)(({ route: { routes } }) => {
+const App = () => {
   return (
     <div>
       <p>header</p>
@@ -11,4 +12,6 @@ export const App = hot(module)(({ route: { routes } }) => {
       <p>footer</p>
     </div>
   )
-})
+}
+
+export default hot(App)

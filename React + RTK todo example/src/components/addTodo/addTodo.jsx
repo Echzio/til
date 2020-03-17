@@ -1,12 +1,11 @@
 import React, { useRef } from 'react'
-import { hot } from 'react-hot-loader';
 import { useSelector } from 'react-redux'
 import { useActions } from '@/hooks/index';
 
 import { currentTodoId } from '@/store/selectors/index'
 import { delaySetTodo } from '@/store/actions/index';
 
-export const AddTodo = hot(module)(() => {
+export const AddTodo = () => {
   const text = useRef(null);
   const { delaySetTodo: delaySetTodoBinded } = useActions([delaySetTodo]);
   const { currentId } = useSelector(({ todo: { todos } }) => ({
@@ -25,4 +24,4 @@ export const AddTodo = hot(module)(() => {
       })}>добавить todo</button>
     </div >
   )
-})
+}

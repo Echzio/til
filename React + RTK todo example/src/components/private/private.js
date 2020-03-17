@@ -1,11 +1,10 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { useActions } from '@/hooks/index';
-import { hot } from 'react-hot-loader';
 
 import { validateAuth } from '@/store/actions/index';
 
-export const Private = hot(module)(() => {
+export const Private = () => {
   const { validateAuth: validateAuthBinded } = useActions([validateAuth])
   const { login, password, error } = useSelector(({ auth: { login, password, error } }) => ({ login, password, error }));
 
@@ -25,4 +24,4 @@ export const Private = hot(module)(() => {
       </form>
     </>
   )
-})
+}

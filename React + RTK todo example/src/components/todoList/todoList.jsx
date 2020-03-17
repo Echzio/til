@@ -1,11 +1,9 @@
 import React from 'react';
 import { useSelector, shallowEqual } from 'react-redux'
-import { hot } from 'react-hot-loader';
 import { RemoveTodo } from '@/components/removeTodo/removeTodo';
 
 
-
-export const TodoList = hot(module)(() => {
+export const TodoList = () => {
   const { todos } = useSelector(({ todo: { todos } }) => ({ todos }), shallowEqual);
 
   return (
@@ -18,4 +16,4 @@ export const TodoList = hot(module)(() => {
       ))}
     </>
   )
-})
+}

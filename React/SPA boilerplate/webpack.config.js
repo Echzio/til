@@ -5,12 +5,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const webpackBar = require('webpackbar');
+const CopyPlugin = require('copy-webpack-plugin');
 const dotenv = require('dotenv').config({ path: __dirname + '/.env' });
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = (env, argv) => {
   return {
-    entry: ['@babel/polyfill', './src/index.js'],
+    entry: ['@babel/polyfill', 'react-hot-loader/patch', './src/index.js'],
     output: {
       path: path.resolve(__dirname, 'dist'),
       filename: '[name].js',
@@ -106,6 +107,7 @@ module.exports = (env, argv) => {
       new webpack.DefinePlugin({
         'process.env': JSON.stringify(dotenv.parsed),
       }),
+      new CopyPlugin([{ from: 'public/assets', to: 'assets' }]),
       // new BundleAnalyzerPlugin()
     ],
   };

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { hot } from 'react-hot-loader';
+import { hot } from 'react-hot-loader/root';
 import styled from '@emotion/styled';
 import ironMan from '@/assets/img/Tony-Stark-Iron-Man-Comic-Face-Cover.webp';
 
@@ -21,4 +21,4 @@ const App = () => {
   )
 };
 
-export default hot(module)(App);
+export default hot(App);

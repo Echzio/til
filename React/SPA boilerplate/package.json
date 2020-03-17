@@ -1,7 +1,7 @@
 {
   "name": "react",
   "version": "1.0.0",
-  "description": "React learn",
+  "description": "React SPA",
   "main": "./src/index.js",
   "repository": "https://github.com/Echzio/til.git",
   "author": "Echzio <aleksassincreed@yandex.ru>",
@@ -21,6 +21,7 @@
     "@babel/register": "^7.5.5",
     "babel-loader": "^8.0.6",
     "babel-plugin-emotion": "^10.0.16",
+    "copy-webpack-plugin": "^5.1.1",
     "css-loader": "^3.2.0",
     "dotenv": "^8.2.0",
     "file-loader": "^4.2.0",

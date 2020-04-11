@@ -52,11 +52,11 @@ module.exports = {
         ],
       },
       {
-        test: /\.(png|jpg|gif)$/,
+        test: /\.(png|jpg|gif|svg)$/,
         loader: 'url-loader',
       },
       {
-        test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
+        test: /\.(woff(2)?|ttf|eot|otf)$/,
         use: ['file-loader?name=fonts/[name].[ext]'],
       },
     ],

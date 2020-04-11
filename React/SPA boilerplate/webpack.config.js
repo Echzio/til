@@ -56,11 +56,11 @@ module.exports = (env, argv) => {
           ],
         },
         {
-          test: /\.(png|jpg|gif|webp)$/,
+          test: /\.(png|jpg|gif|webp|svg)$/,
           loader: ['file-loader?name=./assets/img/[name]/[ext]'],
         },
         {
-          test: /\.(woff(2)?|ttf|eot|svg|otf)$/,
+          test: /\.(woff(2)?|ttf|eot|otf)$/,
           use: ['file-loader?name=./assets/fonts/[name].[ext]'],
         },
       ],

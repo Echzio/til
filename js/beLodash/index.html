@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <input id="0" type="text" />
+  <input id="1" type="text" />
+  <input id="2" type="text" />
+  <input id="3" type="text" />
+  <input id="4" type="text" />
+  <span>Total: </span><span id="total"></span>
+</body>
+<script>
+  class Observer {
+    constructor(array) {
+      this.source = array;
+      this.result = this.source;
+    }
+
+    subscribe(callback, initial, element) {
+      document.getElementById(element).innerText = this.result.reduce(callback, initial)
+    }
+
+    changeSum({value, index}) {
+      this.result = [...this.result.slice(0, index), value, ...this.result.slice(index + 1)];
+      return this
+    }
+  }
+
+  const observable = new Observer([])
+
+  const setValue = value => {
+    observable
+    .changeSum(value)
+    .subscribe((acc, el) => acc+Number(el), 0, 'total')
+  }
+
+  [0, 1, 2, 3, 4].forEach((item, index) => {
+    document.getElementById(item).oninput = e => setValue({
+      value: e.target.value,
+      index
+    })
+  })
+</script>
+
+</html>

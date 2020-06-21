@@ -14,7 +14,6 @@ module.exports = (env, argv) => {
       filename: '[name].js',
       publicPath: '/',
     },
-    devtool: argv.mode === 'development' ? 'source-map' : false,
     devServer: {
       overlay: true,
       hot: true,
@@ -22,6 +21,7 @@ module.exports = (env, argv) => {
       contentBase: [__dirname + '/public'],
       historyApiFallback: true,
     },
+    devtool: argv.mode === 'development' ? 'source-map' : false,
     module: {
       rules: [
         {
@@ -43,6 +43,7 @@ module.exports = (env, argv) => {
         new TerserPlugin({
           cache: true,
           parallel: true,
+          extractComments: false,
         }),
       ],
       splitChunks: {

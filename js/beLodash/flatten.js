@@ -15,6 +15,15 @@ function recursiveFlatten(array) {
   }
 }
 
+// new
+function recursion(...array) {
+  return array.reduce((acc, el) => {
+    let data = Array.isArray(el) ? recursion(...el) : [el];
+    acc = [...acc, ...data]
+    return acc
+  }, [])
+}
+
 console.log(
-  recursiveFlatten([1, [2, [3, [[[[[[[[[4]]]]]]]]]], 5]])
+  recursion([1, [2, [3, [[[[[[[[[4]]]]]]]]]], 5]])
 )

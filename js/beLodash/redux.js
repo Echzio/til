@@ -1,5 +1,5 @@
 function createStore(reducer, initialState) {
-  let store = initialState || reducer(undefined, { type: 'initial' });
+  let store = initialState || reducer(undefined, { type: 'get_state' });
   let listener = () => { };
 
   return {
@@ -18,51 +18,20 @@ function createStore(reducer, initialState) {
 }
 
 
-function reducer(state = { value: 0 }, action) {
+function counter(state = 0, action) {
   switch (action.type) {
     case 'INCREMENT':
-      return {
-        ...state,
-        value: state.value + action.payload
-      }
+      return state + 1
     case 'DECREMENT':
-      return {
-        ...state,
-        value: state.value - action.payload
-      }
+      return state - 1
     default:
       return state
   }
 }
-
-const store = createStore(reducer)
-
-const unsubscribe = store.subscribe(() => {
+const store = createStore(counter)
+store.subscribe(() =>
   console.log(store.getState())
-})
-
-
-store.dispatch({
-  type: 'INCREMENT',
-  payload: 1,
-})
-
-
-store.dispatch({
-  type: 'INCREMENT',
-  payload: 1,
-})
-
-unsubscribe()
-
-store.dispatch({
-  type: 'DECREMENT',
-  payload: 1,
-})
-
-
-
-store.dispatch({
-  type: 'DECREMENT',
-  payload: 1,
-})
+)
+store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'INCREMENT' })
+store.dispatch({ type: 'DECREMENT' })

@@ -1,5 +1,8 @@
 function concat(...props) {
-  return props.flat(2)
+  return props.reduce((acc, el) => {
+    const result = Array.isArray(el) ? concat(...el) : [el]
+    return [...acc, ...result]
+  }, [])
 }
 
 var array = [1];

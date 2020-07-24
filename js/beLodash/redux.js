@@ -26,7 +26,7 @@ function combineReducers(reducers) {
     return Object.entries(reducers).reduce((acc, [key, reducer]) => {
       return {
         ...acc,
-        [key]: reducer(store === undefined ? store : store[key], action)
+        [key]: reducer(!store ? store : store[key], action)
       }
     }, {})
   }

@@ -1,17 +1,9 @@
-function getDivisorsCnt(n) {
-    let counter = 0;
-
-    function recursion(num) {
-        if (num === 0) return null
-        if (n % num === 0) {
-            counter++;
-        }
-        recursion(num - 1)
+function getDivisorsCnt(n, num = n, counter = 0) {
+    if (n === 0) return counter
+    if (num % n === 0) {
+        counter += 1;
     }
-
-    recursion(n);
-
-    return counter;
+    return getDivisorsCnt(n - 1, num, counter)
 }
 
 console.log(getDivisorsCnt(1))  // 1

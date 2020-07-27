@@ -1,7 +1,7 @@
 function padStart(words, num, payload) {
     const count = num - words.length;
     if (count < 1) return words
-    const currentPad = Array(count).fill(payload).join('').slice(0, count)
+    const currentPad = payload.repeat(count).slice(0, count)
     return currentPad + words
 }
 

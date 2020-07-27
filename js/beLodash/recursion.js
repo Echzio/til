@@ -86,14 +86,10 @@ function fibonachi(value) {
 }
 
 function writeList(data) {
-    if (typeof data !== 'object') {
-        return data
-    } else {
-        let arr = [];
-        Object.values(data).forEach(item => {
-            const result = Array.isArray(writeList(item)) ? writeList(item) : [writeList(item)]
-            arr = [...arr, ...result]
-        })
-        return arr
-    }
+    return Object.values(data).reduce((acc, el) => {
+        const res = Object(el) === el ? writeList(el) : el;
+        return acc + res
+    }, 0)
 }
+
+console.log(writeList(list))

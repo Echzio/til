@@ -5,9 +5,12 @@ function moneybox(step = 10) {
   return {
     calculate: sum => {
       currentNumber = Math.ceil(sum);
-      while (currentNumber % step !== 0) {
-        currentNumber++;
+      function recursion(num) {
+        return num % step !== 0 ? recursion(num + 1) : num
       }
+
+      currentNumber = recursion(currentNumber)
+
       box += currentNumber - sum;
       console.log(Math.ceil(box))
     }

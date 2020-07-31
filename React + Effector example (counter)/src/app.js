@@ -1,5 +1,7 @@
 import React from 'react'
 
+import { hot } from 'react-hot-loader/root';
+
 import { useStore } from 'effector-react'
 import { $counter, changeCounter, methods } from '@/store/counter'
 import { $response, $isFetched, fetchData } from '@/store/response'
@@ -25,6 +27,4 @@ const App = () => {
     )
 }
 
-export {
-    App
-}
+export default hot(App)

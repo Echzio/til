@@ -1,25 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+import { createStore } from '@/store/createStore';
 import { Provider } from 'react-redux';
-import { configureStore } from '@reduxjs/toolkit';
-import { rootReducer } from '@/store/reducers/index';
-import logger from 'redux-logger';
-import createSagaMiddleware from 'redux-saga';
-import { rootSaga } from '@/store/sagas/';
 
 import { BrowserRouter } from 'react-router-dom';
-import App from '@/components/app/app';
 
-const sagaMiddleware = createSagaMiddleware();
+import App from '@/app';
 
-const store = configureStore({
-  reducer: rootReducer,
-  devTools: process.env.NODE_ENV !== 'production',
-  middleware: process.env.NODE_ENV !== 'production' ? [logger, sagaMiddleware] : [sagaMiddleware],
-});
 
-sagaMiddleware.run(rootSaga);
+const store = createStore()
 
 const Root = () => (
   <Provider store={store}>

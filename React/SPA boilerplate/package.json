@@ -8,7 +8,7 @@
   "license": "MIT",
   "scripts": {
     "build": "webpack --mode production",
-    "dev": "webpack-dev-server --open --hot --mode development",
+    "dev": "webpack-dev-server --open --mode development",
     "pretty": "prettier --write src/**/*.{js,jsx,scss}"
   },
   "devDependencies": {

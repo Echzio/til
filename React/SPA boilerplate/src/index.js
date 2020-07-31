@@ -1,7 +1,9 @@
 import React, { lazy, Suspense } from 'react';
 import { render } from 'react-dom';
-const App = lazy(() => import('./components/App'));
-import './assets/styles/style.scss';
+
+const App = lazy(() => import('./App'));
+
+import '@/assets/styles/style.scss';
 
 const Root = () => {
   return (

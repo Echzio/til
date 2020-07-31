@@ -1,0 +1,51 @@
+{
+  "name": "react",
+  "version": "1.0.0",
+  "description": "React RTK router config",
+  "main": "./src/index.js",
+  "repository": "https://github.com/Echzio/til.git",
+  "author": "Echzio <aleksassincreed@yandex.ru>",
+  "license": "MIT",
+  "scripts": {
+    "build": "webpack --mode production",
+    "pretty": "prettier --write src/**/*.{js,jsx,scss}",
+    "dev": "webpack-dev-server --open --mode development"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.7.5",
+    "@babel/plugin-proposal-class-properties": "^7.7.4",
+    "@babel/plugin-proposal-optional-chaining": "^7.8.3",
+    "@babel/polyfill": "^7.7.0",
+    "@babel/preset-env": "^7.7.6",
+    "@babel/preset-react": "^7.7.4",
+    "@babel/register": "^7.7.4",
+    "babel-loader": "^8.0.6",
+    "html-webpack-plugin": "^3.2.0",
+    "husky": "^4.2.2",
+    "lint-staged": "^10.0.7",
+    "prettier": "^1.19.1",
+    "terser-webpack-plugin": "^2.3.4",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0",
+    "webpackbar": "^4.0.0"
+  },
+  "dependencies": {
+    "@hot-loader/react-dom": "16.11.0",
+    "effector": "^21.2.0",
+    "effector-react": "^21.0.4",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-hot-loader": "^4.12.18"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js, jsx}": [
+      "prettier --write"
+    ]
+  }
+}

@@ -1,20 +1,22 @@
 function createStore(reducer, initialState) {
-  let store = initialState || reducer(undefined, { type: 'get_state' });
+  let store = initialState || reducer(undefined, { type: '@_get_state' });
   let listener = [];
 
   return {
     dispatch: action => {
       store = reducer(store, action);
       listener.forEach(observer => {
-        observer()
+        const [func] = Object.values(observer);
+        func()
       })
     },
     getState: () => store,
     subscribe: fn => {
-      listener = [...listener, fn]
+      listener = [...listener, { [fn.toString()]: fn }]
       return () => {
-        listener = listener.filter((_, index, array) => {
-          return index !== (array.length - 1)
+        listener = listener.filter(item => {
+          const [key] = Object.keys(item);
+          return key !== fn.toString();
         })
       }
     }
@@ -59,12 +61,12 @@ const rootReducer = combineReducers({
 
 const store = createStore(rootReducer)
 
-store.subscribe(() =>
-  console.log(store.getState())
+const unsubscribe = store.subscribe(() =>
+  console.log(store.getState(), 'first')
 )
 
-const unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
+store.subscribe(() =>
+  console.log(store.getState(), 'last')
 )
 
 unsubscribe()

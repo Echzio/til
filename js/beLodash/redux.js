@@ -24,13 +24,22 @@ function createStore(reducer, initialState) {
 }
 
 function combineReducers(reducers) {
-  return (store, action) => {
-    return Object.entries(reducers).reduce((acc, [key, reducer]) => {
-      return {
-        ...acc,
-        [key]: reducer(!store ? store : store[key], action)
+  const preReducer = {
+    ...reducers,
+
+    *[Symbol.iterator]() {
+      for (let [key, value] of Object.entries(this)) {
+        yield [key, value]
       }
-    }, {})
+    }
+  }
+
+  return (store, action) => {
+    let rootReducer = {};
+    for (let [key, value] of preReducer) {
+      rootReducer[key] = value(store ? store[key] : store, action)
+    }
+    return rootReducer
   }
 }
 

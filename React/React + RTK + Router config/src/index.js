@@ -8,8 +8,7 @@ import { BrowserRouter } from 'react-router-dom';
 
 import App from '@/app';
 
-
-const store = createStore()
+const store = createStore();
 
 const Root = () => (
   <Provider store={store}>

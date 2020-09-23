@@ -1,6 +1,6 @@
 function compact(array) {
   return array.filter(item => {
-    return  parseInt(item) === item && item !== 0
+    return  Number.parseInt(item) === item && item !== 0
   })
 }
 

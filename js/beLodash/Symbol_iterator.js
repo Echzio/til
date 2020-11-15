@@ -11,28 +11,27 @@ const obj = {
     return {
       next() {
         if (counter < values.length) {
-          counter++;
           return {
             done: false,
-            value: values[counter - 1],
+            value: values[counter++],
           };
         } else {
           return {
+            value: values[counter],
             done: true,
           };
         }
       },
     };
   },
-  // *[Symbol.iterator]() {
-  //   let counter = 0,
-  //     values = Object.values(this);
+  *[Symbol.iterator]() {
+    let counter = 0,
+      values = Object.values(this);
 
-  //   while (counter < values.length) {
-  //     yield value[counter];
-  //     counter++;
-  //   }
-  // }
+    while (counter < values.length) {
+      yield values[counter++];
+    }
+  },
 };
 
 for (let i of obj) {

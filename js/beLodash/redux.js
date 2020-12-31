@@ -1,26 +1,20 @@
 function createStore(reducer, initialState) {
-  let store = initialState || reducer(undefined, { type: '@_get_state' });
-  let listener = [];
+  let store = initialState ?? reducer(undefined, { type: "@_get_state" });
+  let listeners = [];
 
   return {
-    dispatch: action => {
+    dispatch: (action) => {
       store = reducer(store, action);
-      listener.forEach(observer => {
-        const [func] = Object.values(observer);
-        func()
-      })
+      listeners.forEach((fn) => fn());
     },
     getState: () => store,
-    subscribe: fn => {
-      listener = [...listener, { [fn.toString()]: fn }]
+    subscribe: (fn) => {
+      listeners = [...listeners, fn];
       return () => {
-        listener = listener.filter(item => {
-          const [key] = Object.keys(item);
-          return key !== fn.toString();
-        })
-      }
-    }
-  }
+        listeners = listeners.filter(item => item.toString() !== fn.toString())
+      };
+    },
+  };
 }
 
 function combineReducers(reducers) {
@@ -29,58 +23,56 @@ function combineReducers(reducers) {
 
     *[Symbol.iterator]() {
       for (let [key, value] of Object.entries(this)) {
-        yield [key, value]
+        yield [key, value];
       }
-    }
-  }
+    },
+  };
 
   return (store, action) => {
     let rootReducer = {};
     for (let [key, value] of preReducer) {
-      rootReducer[key] = value(store ? store[key] : store, action)
+      rootReducer[key] = value(store ? store[key] : store, action);
     }
-    return rootReducer
-  }
+    return rootReducer;
+  };
 }
 
 function counter(state = 0, action) {
   switch (action.type) {
-    case 'INCREMENT':
-      return state + 1
-    case 'DECREMENT':
-      return state - 1
+    case "INCREMENT":
+      return state + 1;
+    case "DECREMENT":
+      return state - 1;
     default:
-      return state
+      return state;
   }
 }
 
-function writter(state = 'hello', action) {
+function writter(state = "hello", action) {
   switch (action.type) {
-    case 'WORLD':
-      return state + action.payload
+    case "WORLD":
+      return state + action.payload;
     default:
-      return state
+      return state;
   }
 }
 
 const rootReducer = combineReducers({
   counter,
   writter,
-})
+});
 
-const store = createStore(rootReducer)
+const store = createStore(rootReducer);
 
 const unsubscribe = store.subscribe(() =>
-  console.log(store.getState(), 'first')
-)
+  console.log(store.getState(), "first")
+);
 
-store.subscribe(() =>
-  console.log(store.getState(), 'last')
-)
+store.subscribe(() => console.log(store.getState(), "last"));
 
-unsubscribe()
+unsubscribe();
 
-store.dispatch({ type: 'INCREMENT' })
-store.dispatch({ type: 'INCREMENT' })
-store.dispatch({ type: 'DECREMENT' })
-store.dispatch({ type: 'WORLD', payload: 'payload' })
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "INCREMENT" });
+store.dispatch({ type: "DECREMENT" });
+store.dispatch({ type: "WORLD", payload: "payload" });

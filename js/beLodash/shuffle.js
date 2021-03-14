@@ -1,10 +1,9 @@
 function shuffle(array) {
-    let newArr = [...array];
-    for (let i = newArr.length - 1; i > 0; i--) {
+    for (let i = array.length - 1; i > 0; i--) {
         let j = Math.floor(Math.random() * (i + 1));
-        [newArr[i], newArr[j]] = [newArr[j], newArr[i]];
+        [array[i], array[j]] = [array[j], array[i]];
     }
-    return newArr
+    return array
 }
 
 console.log(

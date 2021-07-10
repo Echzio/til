@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <device type="media" onchange="callback"></device>
+    <video id="video" autoplay muted></video>
+    <video hidden id="preview" controls></video>
+    <a href="" id="save">save</a>
+  </body>
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const media = navigator.mediaDevices.getUserMedia({
+        video: true,
+        audio: true,
+      });
+
+      media
+        .then((stream) => {
+          const recoder = new MediaRecorder(stream);
+          document.getElementById("video").srcObject = stream;
+          return new Promise(
+            (resolve) =>
+              (document.getElementById("video").onplaying = () => {
+                resolve(stream);
+              })
+          );
+        })
+        .then(startRecording)
+        .then((data) => {
+          const blob = new Blob(data, { type: "video/webm" });
+          document.getElementById("preview").removeAttribute("hidden");
+          document.getElementById("preview").src = URL.createObjectURL(blob);
+          document.getElementById("save").href = URL.createObjectURL(blob);
+          document.getElementById("save").download = "video.webm";
+        });
+    });
+
+    function startRecording(stream) {
+      let recorder = new MediaRecorder(stream);
+      let data = [];
+
+      recorder.ondataavailable = (event) => data.push(event.data);
+      recorder.start();
+
+      return new Promise((resolve) => {
+        recorder.onstop = () => {
+          resolve(data);
+        };
+
+        setTimeout(() => {
+          recorder.stop();
+        }, 5000);
+      });
+    }
+  </script>
+</html>

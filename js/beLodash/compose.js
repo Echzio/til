@@ -7,14 +7,11 @@ function compose(...fns) {
 }
 
 function carryng(fn) {
-  let args = [];
-  let count = fn.length;
-
-  return function carried(ars) {
-    args = [...args, ars];
-    if (count < 2) return fn.apply(null, args);
-    count--;
-    return carried;
+  return function carried(...args) {
+    if (fn.length === args.length) return fn.apply(null, args);
+    return function () {
+      return carried(...args, ...arguments);
+    };
   };
 }
 

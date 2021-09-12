@@ -6,9 +6,6 @@
 2) React
 ```
 ```sh
-3) Java core
-```
-```sh
 4) ES 6~∞
 ```
 ```sh

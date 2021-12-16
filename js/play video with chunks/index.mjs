@@ -4,9 +4,17 @@ mediaSource.addEventListener("sourceopen", async () => {
   const sourceBuffer = mediaSource.addSourceBuffer(
     'video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
   );
-  const res = await fetch(
+  const response = await fetch(
     "https://nickdesaulniers.github.io/netfix/demo/frag_bunny.mp4"
-  ).then((res) => res.body.getReader());
+  ).then((res) => res);
+
+  const maxLength = (
+    response.headers.get("Content-Length") /
+    1024 /
+    1024
+  ).toFixed(2);
+
+  const res = response.body.getReader();
 
   let length = 0;
 
@@ -21,7 +29,7 @@ mediaSource.addEventListener("sourceopen", async () => {
       length /
       1024 /
       1024
-    ).toFixed(2)} мегабайт`;
+    ).toFixed(2)} мегабайт из ${maxLength}`;
 
     await new Promise((resolve) => {
       sourceBuffer.appendBuffer(value);

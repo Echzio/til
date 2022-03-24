@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./index.ts" type="module"></script>
+    <title>Document</title>
+    <style>
+      #app {
+        border: 1px solid #000;
+        overflow: scroll;
+        display: grid;
+        scroll-behavior: smooth;
+        scroll-snap-type: x mandatory;
+      }
+
+      .slide-wrapper {
+        display: flex;
+        column-gap: 1rem;
+      }
+
+      .slide {
+        scroll-snap-align: start;
+        flex-shrink: 0;
+        width: 500px;
+        user-select: none;
+        border: 1px solid #000;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <div class="slide-wrapper">
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+        <div class="slide">
+          <p>hello world</p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

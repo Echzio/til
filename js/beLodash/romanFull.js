@@ -42,7 +42,11 @@ function toShortRome(number) {
     return recursion(number - upper[1], res + upper[0]);
   }
 
-  return recursion(number);
+  try {
+    return recursion(number)
+  } catch {
+    return ''
+  }
 }
 
 console.log(toShortRome(toNumber(input)));

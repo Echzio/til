@@ -69,6 +69,39 @@ const list = {
   },
 };
 
+const tree = {
+  value: 1,
+  children: [
+    {
+      value: 2,
+      children: [{ value: 3 }],
+    },
+    {
+      value: 4,
+      children: [
+        {
+          value: 5,
+        },
+        {
+          value: 6,
+        },
+      ],
+    },
+  ],
+};
+
+function recursion(tree) {
+  if (Number(tree) === tree) {
+    return tree;
+  }
+
+  return Object.values(tree).reduce((acc, value) => {
+    const res = recursion(value);
+    const normalizeRes = Array.isArray(res) ? res : [res];
+    return [...acc, ...normalizeRes];
+  }, []);
+}
+
 function calculateSalary(data) {
   if (Array.isArray(data)) {
     return data.reduce((acc, { salary }) => acc + salary, 0);

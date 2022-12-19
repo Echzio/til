@@ -47,4 +47,7 @@ const base64ToBlob = () => {
 
   return URL.createObjectURL(blob);
 };
-
+/*
+'IHDR,,y}usBIT|d	pHYs7p7p' -> arraybuffer -> Uint8 -> Blob
+'0e202232512a2c1129860a4b448aa1c2129162a' -> buffer.from(data, 'hex')
+*/

@@ -4,13 +4,13 @@ function getAnagrams(...props) {
     const sorted = [...item].sort().join("");
     return {
       ...acc,
-      [sorted]: [...(acc[sorted] || []), index],
+      [sorted]: [...(acc[sorted] || []), item],
     };
   }, {});
 
-  return Object.values(objected).map((arr) =>
-    arr.map((index) => maped[index].item)
-  );
+  return Object.values(objected);
 }
 
-console.log(getAnagrams("нос", "сон", "снедь", "днесь", 'пек', 'гегы', 'кеп', 'ыгег'));
+console.log(
+  getAnagrams("нос", "сон", "снедь", "днесь", "пек", "гегы", "кеп", "ыгег")
+);

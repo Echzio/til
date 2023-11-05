@@ -14,23 +14,22 @@ const shape = {
   },
 };
 
-function flatKeys(data) {
-  let res = {};
+const flatKeys = (obj) => {
+  const res = {};
 
-  function recusrion(obj, path = "") {
+  function recursion(obj, key = "") {
     if (Object(obj) !== obj || Array.isArray(obj)) {
-      res[path] = obj;
-      return;
+      res[key] = obj;
+    } else {
+      Object.entries(obj).forEach(([kkey, value]) => {
+        recursion(value, key ? `${key}/${kkey}` : kkey);
+      });
     }
-
-    Object.entries(obj).forEach(([key, value]) => {
-      recusrion(value, path ? `${path}/${key}` : key);
-    });
   }
 
-  recusrion(data);
+  recursion(obj);
 
   return res;
-}
+};
 
 console.log(flatKeys(shape));
